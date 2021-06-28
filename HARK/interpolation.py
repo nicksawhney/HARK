@@ -3973,20 +3973,24 @@ class Curvilinear2DInterp(HARKinterpolator2D):
         these = np.ones(m, dtype=bool)
         max_loops = self.x_n + self.y_n
         loops = 0
-        while np.any(these) and loops < max_loops:
+        while np.any(these) and (loops < max_loops):
             # Get coordinates for the four vertices: (xA,yA),...,(xD,yD)
             x_temp = x[these]
             y_temp = y[these]
-            xA = self.x_values[x_pos_guess[these], y_pos_guess[these]]
-            xB = self.x_values[x_pos_guess[these] + 1, y_pos_guess[these]]
-            xC = self.x_values[x_pos_guess[these], y_pos_guess[these] + 1]
-            xD = self.x_values[x_pos_guess[these] + 1, y_pos_guess[these] + 1]
-            yA = self.y_values[x_pos_guess[these], y_pos_guess[these]]
-            yB = self.y_values[x_pos_guess[these] + 1, y_pos_guess[these]]
-            yC = self.y_values[x_pos_guess[these], y_pos_guess[these] + 1]
-            yD = self.y_values[x_pos_guess[these] + 1, y_pos_guess[these] + 1]
+            i_temp = x_pos_guess[these]
+            j_temp = y_pos_guess[these]
+            
+            xA = self.x_values[i_temp, j_temp]
+            xB = self.x_values[i_temp + 1, j_temp]
+            xC = self.x_values[i_temp, j_temp + 1]
+            xD = self.x_values[i_temp + 1, j_temp + 1]
+            yA = self.y_values[i_temp, j_temp]
+            yB = self.y_values[i_temp + 1, j_temp]
+            yC = self.y_values[i_temp, j_temp + 1]
+            yD = self.y_values[i_temp + 1, j_temp + 1]
 
-            # Check the "bounding box" for the sector: is this guess plausible?
+
+            # # Check the "bounding box" for the sector: is this guess plausible?
             move_down = (y_temp < np.minimum(yA, yB)) + 0
             move_right = (x_temp > np.maximum(xB, xD)) + 0
             move_up = (y_temp > np.maximum(yC, yD)) + 0

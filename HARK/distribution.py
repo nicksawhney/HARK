@@ -1106,6 +1106,9 @@ def calc_expectation(dstn,func=lambda x : x,*args):
     elif f_exp.shape[0] == f_exp.size:
         f_exp = f_exp.flatten()
 
+    if len(args) > 0:
+        f_exp = np.reshape(f_exp, args[0].shape)
+
     return f_exp
 
 
