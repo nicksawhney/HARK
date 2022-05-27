@@ -54,6 +54,7 @@ class testAggShockConsumerType(unittest.TestCase):
             self.economy.AFunc.slope, 1.116259456228145
         )
 
+        #how is MaggNow calculated?
         self.assertAlmostEqual(self.economy.history["MaggNow"][10], 7.456324335623432)
 
 
@@ -157,10 +158,14 @@ class KrusellSmithMethodsTestCase(KrusellSmithTestCase):
 
         # object attributes that are conditions
         # for precompute_arrays
+
+        # do these need to be changed? 
         self.assertEqual(
             self.agent.aGrid.size,
             32
         )
+
+        # ??
         self.assertAlmostEqual(
             self.agent.aGrid[5],
             0.3426040963137289
@@ -169,6 +174,7 @@ class KrusellSmithMethodsTestCase(KrusellSmithTestCase):
         self.economy.solve_agents()
 
         # testing precompute_arrays()
+        # do precompute_arrays use distributions?
         self.assertAlmostEqual(
             self.agent.mNextArray[5,2,3,0],
             0.34879574548563563
@@ -224,6 +230,7 @@ class KrusellSmithMethodsTestCase(KrusellSmithTestCase):
             10.72309150585389
         )
 
+        # what is this testing?
         self.assertAlmostEqual(
             self.economy.history['Mnow'][10],
             self.economy.history['Mnow'][10]
@@ -231,6 +238,7 @@ class KrusellSmithMethodsTestCase(KrusellSmithTestCase):
 
         new_dynamics = self.economy.update_dynamics()
 
+        # do these need to be changed?
         self.assertAlmostEqual(
             new_dynamics.AFunc[0].slope,
             1.0030279334157743

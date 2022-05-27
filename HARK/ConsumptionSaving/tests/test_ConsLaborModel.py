@@ -19,3 +19,6 @@ class test_LaborIntMargConsumerType(unittest.TestCase):
         self.model.track_vars = ["bNrm", 'cNrm']
         self.model.initialize_sim()
         self.model.simulate()
+
+        # does this need value tests?
+        

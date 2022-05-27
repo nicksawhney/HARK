@@ -18,6 +18,8 @@ class PortfolioConsumerTypeTestCase(unittest.TestCase):
 
 
 class UnitsPortfolioConsumerTypeTestCase(PortfolioConsumerTypeTestCase):
+
+
     def test_RiskyShareFunc(self):
         self.assertAlmostEqual(
             self.pcct.solution[0].ShareFuncAdj(8).tolist(), 0.9507419932531964
@@ -72,6 +74,8 @@ class UnitsPortfolioConsumerTypeTestCase(PortfolioConsumerTypeTestCase):
         self.assertAlmostEqual(self.pcct.controls["cNrm"][0], 1.67874799)
 
 
+
+
 class SimulatePortfolioConsumerTypeTestCase(PortfolioConsumerTypeTestCase):
     def test_simulation(self):
         self.pcct.T_sim = 30
@@ -91,15 +95,16 @@ class SimulatePortfolioConsumerTypeTestCase(PortfolioConsumerTypeTestCase):
 
         self.pcct.simulate()
 
-        self.assertAlmostEqual(self.pcct.history["mNrm"][0][0], 9.70233892)
+        # Initial values depend on draws from a distribution...... should they be removed?
+        self.assertAlmostEqual(self.pcct.history["mNrm"][0][0], 9.70233892) # based on random draw
 
-        self.assertAlmostEqual(self.pcct.history["cNrm"][0][0], 1.6787479894848298)
+        self.assertAlmostEqual(self.pcct.history["cNrm"][0][0], 1.6787479894848298) # based on mNrm
 
         self.assertAlmostEqual(self.pcct.history["Share"][0][0], 0.8627164488246847)
 
-        self.assertAlmostEqual(self.pcct.history["aNrm"][0][0], 8.023590930905383)
+        self.assertAlmostEqual(self.pcct.history["aNrm"][0][0], 8.023590930905383) #"post-state"
 
-        self.assertAlmostEqual(self.pcct.history["Adjust"][0][0], 1.0)
+        self.assertAlmostEqual(self.pcct.history["Adjust"][0][0], 1.0) # random shock
 
         # the next period
         self.assertAlmostEqual(self.pcct.history["Risky"][1][0], 0.8950304697526602)

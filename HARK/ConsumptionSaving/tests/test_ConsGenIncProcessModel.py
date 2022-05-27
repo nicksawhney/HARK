@@ -100,4 +100,7 @@ class testPersistentShockConsumerType(unittest.TestCase):
         self.agent.initialize_sim()
         self.agent.simulate()
 
+        # this feels like it needs to be changed -- how to incorporate shocks into testing calculation?
         self.assertAlmostEqual(np.mean(self.agent.history["mLvl"]), 1.2043946738813716)
+
+

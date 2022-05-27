@@ -191,6 +191,9 @@ class test_make_EndOfPrdvFuncCond(unittest.TestCase):
         #solve the consumer's problem
         Markov_vFuncBool_example.solve()
 
+
+        # feels like it needs to be changed
+        # how to empirically test value function values?
         self.assertAlmostEqual(Markov_vFuncBool_example.solution[0].vFunc[1](0.4),  -4.127935542867632 )
 
     
